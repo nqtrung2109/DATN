@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"> 
+<head>
+    <meta charset="utf-8">
+    <title>ĐATN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery.js"></script> 
+    <script src="socket.io/socket.io.js"></script>
+    <!--     CSS     -->
+    <link rel="stylesheet" href="css/style_trangchu.css">
+    <!--    Front Icon   -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <div class="logo_name">SideBar</div>
+            <i class='bx bx-menu' id="btn" ></i>
+        </div>
+
+        <ul class="nav-list">
+            <li>
+                <i class='bx bx-search' ></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+
+            <li>
+                <a href="/">
+                    <i class='bx bxs-home'></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+
+            <li>
+                <a href="/dashboard">
+                    <i class='bx bxs-dashboard' ></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+
+            <li>
+                <a href="/weather">
+                    <i class='bx bxs-map'></i>
+                    <span class="links_name">Weather</span>
+                </a>
+                <span class="tooltip">Weather</span>
+            </li>
+          
+            <li>
+                <a href="#">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+        </ul>
+    </div>
+    <section id="content">
+        <div class="team-section">
+            <div class ="container">
+                <div class="row">
+                    <div class="title" >
+                        <h1 style=>Welcome to the Website</h1>
+                        <h2>We are the design team</h2>
+                        <p>Đây là trang web giúp bạn có thể theo dõi các node giám sát chất lượng môi trường của chúng tôi.
+                           Sản phẩm này đang trong quá trình hoàn thiện và phát triển, chính vì thế rất mong nhận được những
+                           ý kiến đóng góp từ tất cả các bạn, để chúng tôi có thể cải thiện chất lượng dịch vụ tốt hơn nữa. Mọi 
+                           nhận xét và đề xuất xin vui lòng gửi đến địa chỉ của các thành viên được cung cấp bên dưới.
+                        </p>
+                    </div>                
+                </div>
+                <div class="team-card">
+                    <div class="card">
+                        <div class="content">
+                            <div class="img_member">
+                                <img src="./image/nguoidung.jpg">
+                            </div>
+                            <div class="content_member">
+                                <h4>Nguyễn Quang Trung</h4>
+                                <h5>20181797</h5>
+                            </div>
+                            <div class="sci">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>       
+                    <div class="card">
+                        <div class="content">
+                            <div class="img_member">
+                                <img src="./image/nguoidung.jpg">
+                            </div>
+                            <div class="content_member">
+                                <h4>Lê Tú Khải</h4>
+                                <h5>20181542</h5>
+                            </div>
+                            <div class="sci">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+<script>
+    var socket= io("http://localhost:3000");
+
+    // tạo menu ẩn hiện và chuyển tab 
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+
+    closeBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("open");
+        menuBtnChange();                         //calling the function(optional)
+    });
+
+    searchBtn.addEventListener("click", ()=>{   // Sidebar open when you click on the search iocn
+        sidebar.classList.toggle("open");
+        menuBtnChange();                        //calling the function(optional)
+    });
+
+    // thay đổi icon của nút btn khi ẩn hiện thanh sidebar
+    function menuBtnChange() {
+        if(sidebar.classList.contains("open")){
+            closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+        }else {
+            closeBtn.classList.replace("bx-menu-alt-right","bx-menu");  //replacing the iocns class
+        }
+    }   
+    // Thực hiện AJAX khi người dùng nhấn vào nút Home
+    // $(".nav-list li:nth-child(2) a").click(function(e) {
+    //     e.preventDefault();
+    //     if (sidebar.classList.contains("open")) {
+    //         window.location.replace("/trangchu.html");
+    //     } else {
+    //         $.ajax({
+    //             url: "/trangchu.html",
+    //             success: function(data) {
+    //                 content.html(data);
+    //             }
+    //         });
+    //     }
+    // });
+
+    $(document).ready(function() {
+        // Khai báo biến cho các nút và các trang HTML tương ứng
+        var homeBtn = $(".nav-list li:nth-child(2) a");
+        var dashboardBtn = $(".nav-list li:nth-child(3) a");
+        var weatherBtn = $(".nav-list li:nth-child(4) a");
+        var homePage = "/";
+        var dashboardPage = "/dashboard.html";
+        var weatherPage = "/weather.html";
+        var content = $("#content");
+
+
+        // Thực hiện AJAX khi người dùng nhấn vào nút Home
+        // homeBtn.click(function(e) {
+        //     e.preventDefault();
+        //     $.ajax({
+        //         url: homePage,
+        //         success: function(data) {
+        //             content.html(data);
+        //         }
+        //     });
+        // });
+
+        // Thực hiện AJAX khi người dùng nhấn vào nút Dashboard
+        dashboardBtn.click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: dashboardPage,
+                success: function(data) {
+                    content.html(data);
+                }
+            });
+        });
+
+        // Thực hiện AJAX khi người dùng nhấn vào nút Weather
+        weatherBtn.click(function(e) {
+            e.preventDefault();
+            $.ajax({
+            url: weatherPage,
+                success: function(data) {
+                    content.html(data);
+                }
+            });
+        });
+    });
+
+</script>
