@@ -216,20 +216,88 @@
 }
 
 /* css của phần about us */
-.team-section{
-    margin: auto
+.team_section{
+    display: flex;
+    width: 100%;
 }
-.team-section .container{
+.team_section .container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
     margin: auto;
 }
-.team-section .container .row{
-    margin: auto;
-}
-.team-section .container .row .title{
+.team_section .container .title{
     text-align: center;
-    margin-top: 50px;
+    margin-top: 15px;
 }
-.team-section .container .row .title h1{
+.team_section .container .title h1{
+    font-size: 35px;
+}
+.team_section .container .title h2{
+    font-size: 25px;
+}
+.team_section .container .title p{
+    font-size: 18px;
+}
+.team_section .container .team_card{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.team_section .container .team_card .card{
+    width: 315px;
+    height: 400px;
+    padding: 30px 15px;
+    margin: 20px 70px 0 0;
+    box-shadow: 0.6em 0.6em 1.2em #d2dce9,
+                -0.5em -0.5em 1em white;
+    border-radius: 15px;
+}
+.team_section .container .team_card .card .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.team_section .container .team_card .card .content .img_member{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.team_section .container .team_card .card .content .img_member img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.team_section .container .team_card .card .content .content_member h4{
+    font-size: 1.5rem;
+    font-weight: bold;
     text-align: center;
-    font-size: 100px;
+    letter-spacing: 1px;
+}
+.team_section .container .team_card .card .content .content_member h5{
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.team_section .container .team_card .card .content .sci{
+    margin-top: 15px;
+}
+.team_section .container .team_card .card .content .sci a{
+    text-decoration: none;
+    color: #6c758f;
+    font-size: 30px;
+    margin: 10px 20px 0 20px;
+    transition: color 0.4s;
+}
+.team_section .container .team_card .card .content .sci a:hover{
+    color: #0196e3;
 }
