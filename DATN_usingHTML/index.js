@@ -12,7 +12,7 @@ app.use(express.static("public")); // link thư mục chứa các file tĩnh, c�
 
 //-----------------------gửi html đến client----------------------------
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '/public/trangchu.html'));
+    res.sendFile(path.join(__dirname, '/public/about_us.html'));
   });
 app.get('/dashboard', function(req, res) {
     res.sendFile(path.join(__dirname, '/public/dashboard.html'));

@@ -1,12 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr"> 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    
+    <!--     CSS     -->
+    <link rel="stylesheet" href="./css/style_dashboard.css">
+    <!--    Front Icon   -->
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' >
+    <!-- JS -->
+    <script src="jquery.js"></script> 
+    <script src="socket.io/socket.io.js"></script>
+    <script src="./js/sidebar.js" type="module"></script>
 </head>
+
 <body>
-    <h2> Đây là trang dashboard </h2>
+    <div class="sidebar">
+        <div class="logo">
+            <div class="logo_name">SideBar</div>
+            <i class='bx bx-menu' id="btn" ></i>
+        </div>
+
+        <ul class="nav-list">
+            <li>
+                <i class='bx bx-search' ></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+
+            <li>
+                <a href="./dashboard">
+                    <i class='bx bxs-dashboard' ></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+
+            <li>
+                <a href="/weather">
+                    <i class='bx bxs-map'></i>
+                    <span class="links_name">Weather</span>
+                </a>
+                <span class="tooltip">Weather</span>
+            </li>
+          
+            <li>
+                <a href="#">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+        </ul>
+    </div>
+    <section id="content">
+        <h2>Đây là trang dashboard</h2>
+    </section>
 </body>
 </html>
