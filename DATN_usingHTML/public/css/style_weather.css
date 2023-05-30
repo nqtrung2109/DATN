@@ -7,209 +7,236 @@
 
 /* định dạng chung cho cả trang */
 *{
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: "Poppins" , sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
 }
+
 /* css phần css của sidebar */
 /* định dạng thanh sidebar bên trái */
 .sidebar{
-   position: fixed;
-   left: 0;
-   top: 0;
-   height: 100%;
-   width: 78px;
-   background: #11101D;
-   padding: 6px 14px;
-   z-index: 99;
-   transition: all 0.5s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: #11101D;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
 }
+
 /* kích thước sidebar sau khi hiện */
 .sidebar.open{
-   width: 250px;
+  width: 250px;
 }
+
 /* định dạng phần logo phía trên thanh sidebar */
 .sidebar .logo{
-   height: 60px;
-   display: flex;
-   align-items: center;
-   position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
+
 /* định dạng chữ bên cạnh phần icon logo */
 .sidebar .logo .logo_name{
-   color: #fff;
-   font-size: 25px;
-   font-weight: 600;
-   text-align: center;
-   margin-left: 5px;
-   opacity: 0;
-   transition: all 0.5s ease;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  margin-left: 5px;
+  opacity: 0;
+  transition: all 0.5s ease;
 }
+
 /* định dạng phần logo_name khi ẩn/hiện */
 .sidebar.open .logo .logo_name{
-   opacity: 1;
+  opacity: 1;
 }
+
 /* định dạng phần nút bấm ẩn hiện */
 .sidebar .logo #btn{
-   color: #fff;
-   position: absolute;
-   top: 50%;
-   right: 0;
-   transform: translateY(-50%);
-   font-size: 35px;
-   text-align: center;
-   cursor: pointer;
-   transition: all 0.5s ease;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 35px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
 }
+
 /* định dạng nút bấm sau khi hiện thanh sidebar */
 .sidebar.open .logo #btn{
-   text-align: right;
+  text-align: right;
 }
+
 /*  định dạng chung icon trong thanh sidebar */
 .sidebar i{
-   color: #fff;
-   height: 60px;
-   min-width: 50px;
-   font-size: 28px;
-   text-align: center;
-   line-height: 60px;
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
 }
+
 /* định dạng phần list */
 .sidebar .nav-list{
-   margin-top: 20px;
-   height: 100%;
+  margin-top: 20px;
+  height: 100%;
 }
+
 /* định dạng list tab trong thanh menu */
 .sidebar li{
-   position: relative;
-   margin: 8px 0;
-   list-style: none;
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
 }
+
 .sidebar li i{
-   height: 50px;
-   line-height: 50px;
-   font-size: 25px;
-   border-radius: 12px;
- }
+  height: 50px;
+  line-height: 50px;
+  font-size: 25px;
+  border-radius: 12px;
+}
+
 /* định dạng nội dung hộp nội dung được hiển thị lên khi chỉ vào icon lúc ẩn sidebar */
 .sidebar li .tooltip{
-   position: absolute;
-   top: -20px;
-   left: calc(100% + 15px);
-   z-index: 3;
-   background: #fff;
-   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-   padding: 6px 12px;
-   border-radius: 4px;
-   font-size: 15px;
-   font-weight: 400;
-   opacity: 0;
-   white-space: nowrap;
-   pointer-events: none;
-   transition: 0s;
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
 }
+
 .sidebar li:hover .tooltip{
-   opacity: 1;
-   pointer-events: auto;
-   transition: all 0.4s ease;
-   top: 50%;
-   transform: translateY(-50%);
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
 }
+
 .sidebar.open li .tooltip{
-   display: none;
+  display: none;
 }
+
 /* định dạng các tab trong sidebar */
 .sidebar li a{
-   display: flex;
-   height: 100%;
-   width: 100%;
-   border-radius: 12px;
-   align-items: center;
-   text-decoration: none;
-   transition: all 0.4s ease;
-   background: #11101D;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #11101D;
 }
+
 /* định dạng các tab khi chỉ chuột vào */
 .sidebar li a:hover{
    background: #FFF;
 }
+
 /* định dạng chữ tiêu đề trong tab */
 .sidebar li a .links_name{
-   color: #fff;
-   font-size: 15px;
-   font-weight: 400;
-   white-space: nowrap;
-   opacity: 0;
-   pointer-events: none;
-   transition: 0.4s;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
 }
+
 /* định dạng chữ tiêu đề trong tab khi hiện thanh sidebar */
 .sidebar.open li a .links_name{
-   opacity: 1;
-   pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
+
 /* định dạng icon và chữ tiêu đề trong tab khi di chuột vào */
 .sidebar li a:hover .links_name,
 .sidebar li a:hover i{
-   transition: all 0.5s ease;
-   color: #11101D;
+  transition: all 0.5s ease;
+  color: #11101D;
 }
+
 /* định dạng thanh sreach trên sidebar */
 .sidebar .bx-search{
-   position: absolute;
-   top: 50%;
-   left: 0;
-   transform: translateY(-50%);
-   font-size: 25px;
-   background: #1d1b31;
-   color: #FFF;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 25px;
+  background: #1d1b31;
+  color: #FFF;
 }
+
 /* định dạng thanh search khi hiện thanh sidebar */
 .sidebar.open .bx-search:hover{
-   background: #1d1b31;
-   color: #FFF;
+  background: #1d1b31;
+  color: #FFF;
 }
+
 /* định dạng thanh search khi di chuột vào */
 .sidebar .bx-search:hover{
    background: #FFF;
    color: #11101d;
 }
+
 /* định dạng chữ nhập vào search */
 .sidebar input{
-   font-size: 15px;
-   color: #FFF;
-   font-weight: 400;
-   outline: none;
-   height: 50px;
-   width: 100%;
-   border: none;
-   border-radius: 12px;
-   transition: all 0.5s ease;
-   background: #1d1b31;
+  font-size: 15px;
+  color: #FFF;
+  font-weight: 400;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  background: #1d1b31;
 }
+
 /* định dạng input khi hiện thanh sidebar */
 .sidebar.open input{
-   padding: 0 20px 0 50px;
-   width: 100%;
+  padding: 0 20px 0 50px;
+  width: 100%;
 }
+
 /* định dạng phần content bên phải thanh sidebar */
 #content{
-   position: relative;
-   background: white;
-   min-height: 100vh;
-   top: 0;
-   /* khi sidebar ẩn thì phần content cách lề trái là ...*/
-   left: 85px;
-   width: calc(100% - 85px);
-   transition: all 0s ease;
-   z-index: 2;
+  position: relative;
+  background: white;
+  min-height: 100vh;
+  top: 0;
+  /* khi sidebar ẩn thì phần content cách lề trái là ...*/
+  left: 85px;
+  width: calc(100% - 85px);
+  transition: all 0s ease;
+  z-index: 2;
 }
+
 .sidebar.open ~ #content{
-   /* khi sidebar hiện thì phần content cách lề trái là ...*/
+  /* khi sidebar hiện thì phần content cách lề trái là ...*/
   left: 260px;
   width: calc(100% - 260px); 
 }
+
 /*  sử dụng để tùy chỉnh giao diện của trang web cho các thiết bị có kích thước màn hình khác nhau. 
 Đoạn mã trên sẽ được áp dụng cho các thiết bị có chiều rộng màn hình tối đa là 420px. */
 @media (max-width: 420px) {
@@ -217,8 +244,6 @@
        display: none;
    }
 }
-
-
 
 /*-----------------------------------*\
   #CUSTOM PROPERTY
@@ -262,9 +287,10 @@
     --title-1: 2rem;
     --title-2: 1.8rem;
     --title-3: 1.6rem;
-    --body-1: 2.2rem;
+    --body-1: 2rem;
     --body-2: 2rem;
     --body-3: 1.6rem;
+    --label-0: 2rem;
     --label-1: 1.4rem;
     --label-2: 1.2rem;
 
@@ -403,7 +429,7 @@ body {
 }
 
 .icon-btn {
-  background-color: var(--white-alpha-8);
+  background-color: var(--background);
   width: 48px;
   height: 48px;
   display: grid;
@@ -485,7 +511,7 @@ body {
 .title-1 { font-size: var(--title-1);}
 
 .title-2 { 
-  font-size: var(--title-3);
+  font-size: var(--title-2);
   margin-block-end: 12px;
 }
 
@@ -502,6 +528,8 @@ body {
 }
 
 .body-3 { font-size: var(--body-3);}
+
+.label-0 { font-size:var(--label-0);}
 
 .label-1 { font-size:var(--label-1);}
 
@@ -539,8 +567,8 @@ body {
 .search-view {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 100px;
+  width: 300px;
   height: 100vh;
   height: 100svh;  /* for mobile browser*/
   background-color: var(--surface);
@@ -670,7 +698,7 @@ article.container::before {
   z-index: 1;
 }
 
-.section:not(:last-child) { margin-block-end: 16px;}
+.section:not(:last-child) { margin-block-end: 10px;}
 
 /*-----------------------------------*\
   #CURRENT WEATHER
@@ -743,6 +771,8 @@ article.container::before {
   color: var(--on-surface-variant);
   margin-block-end: 20px;
 }
+
+.highlight-list .label-0 { color: var(--on-surface-variant);}
 
 .highlights .card-sm {
   background-color: var(--black-alpha-10);
@@ -930,16 +960,18 @@ article.container::before {
 \*-----------------------------------*/
 
 /* responsive for large than 768px screen */
-@media (min-width: 700px) {
+
+
+@media (min-width: 1000px) {
   /* reuded style */
 
-  .container { padding: 24px;}
+  /* .container { padding: 24px;} */
 
   .title-1 { --title-1: 2.4rem;}
 
   .section > .title-2 { margin-block-end: 16px;}
 
-  .card-lg { padding: 24px;}
+  .card-lg { padding: 20px;}
 
   .card-sm {
     padding: 20px;
@@ -988,7 +1020,10 @@ article.container::before {
     padding-top: 10px;
   }
 
-  .search-wrapper > .m-icon { display: block;}
+  .search-wrapper > .m-icon { 
+    display: block;
+    top: 38px;
+  }
 
   .search-field,
   .search-view .view-list { background-color: var(--surface);}
@@ -1039,7 +1074,7 @@ article.container::before {
     padding-block-start: 0;
     grid-template-columns: 280px minmax(0, 1fr);
     align-items: flex-start;
-    gap: 24px
+    /* gap: 24px */
   }
 
   .container-left {
@@ -1047,7 +1082,7 @@ article.container::before {
     top: 0;
   }
 
-  .section:not(:last-child) { margin-block: 20px;}
+  .section:not(:last-child) { margin-block: 10px;}
 
   .forecast-card .card-item:not(:last-child) { margin-block-end: 16px;}
 
@@ -1091,33 +1126,34 @@ article.container::before {
     padding: 16px;
   }
 
-
 }
 
+
+
 /* responsive for large than 1200px screen */
-@media (min-width: 1100px) {
+@media (min-width: 1200px) {
   :root {
 
     /* font size */
-    --heading: 7rem;
+    --heading: 6rem;
     --title-2: 2rem;    
   }
 
   /* reused style */
-  .container { padding: 40px;}
+  /* .container { padding: 40px;} */
 
-  .card-lg { padding: 36px;}
+  .card-lg { padding: 20px;}
 
   .card-sm { padding: 24px;}
 
-  .title-1 { --title-1: 3.6rem;}
+  .title-1 { --title-1: 3rem;}
 
   .highlight-card.two .card-item { column-gap: 24px;}
 
   /* header */
   .header .icon-btn { display: none;}
 
-  .logo img {width: 200px;}
+  /* .logo img {width: 200px;} */
 
   .header {
     position: relative;
@@ -1142,7 +1178,10 @@ article.container::before {
     border-block-end: none;
     padding-top: 10px;}
 
-  .search-wrapper > .m-icon { display: block;}
+  .search-wrapper > .m-icon { 
+    display: block;
+    top: 38px;
+  }
 
   .search-field,
   .search-view .view-list { background-color: var(--surface);}
@@ -1186,7 +1225,7 @@ article.container::before {
   main {
     height: calc(100vh -120px);
     height: calc(100svh -120px);
-    gap: 40px;
+    /* gap: 40px; */
   }
 
   /* article.container {
@@ -1195,20 +1234,27 @@ article.container::before {
   } */
   .current-weather .weather-icon { width: 80px;}
 
-  .forecast-card .title-2 {--title-2: 2.2rem;}
+  .forecast-card .title-2 {--title-2: 1.8rem;}
 
-  .highlight-card:nth-child(-n+2) { 
-    height: 250px;
+  .highlight-list { grid-template-columns: 1fr 1fr;}
+
+  .highlight-card:nth-child(-n+2) {
+    grid-column: span 2;
+    height: 180px;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
   }
 
-  .highlight-card:nth-child(n+3) { height: 150px;}
+  .highlight-card:nth-child(n+3) { 
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+  }
 
   .highlight-card .m-icon { font-size: 4.8rem;}
-
-  .highlight-list { grid-template-columns:  repeat(4, 1fr);}
 
   .slider-list { gap: 16px}
 
 }
+
+#forecast-label { color: var(--background);}

@@ -172,22 +172,22 @@ export const updateWeather = function (lat, lon) {
                             <ul class="card-list">
                                 <li class="card-item">
                                     <p class="title-1">${pm2_5.toPrecision(3)}</p>
-                                    <p class="label-1">PM<sub>2.5</sub></p>
+                                    <p class="label-0">PM2.5</p>
                                 </li>
 
                                 <li class="card-item">
                                     <p class="title-1">${so2.toPrecision(3)}</p>
-                                    <p class="label-1">SO<sub>2</sub></p>
+                                    <p class="label-0">SO2</p>
                                 </li>
 
                                 <li class="card-item">
                                     <p class="title-1">${no2.toPrecision(3)}</p>
-                                    <p class="label-1">NO<sub>2</sub></p>
+                                    <p class="label-0">NO2</p>
                                 </li>
 
                                 <li class="card-item">
                                     <p class="title-1">${o3.toPrecision(3)}</p>
-                                    <p class="label-1">O<sub>3</sub></p>
+                                    <p class="label-0">O3</p>
                                 </li>
                             </ul>
                         </div>
@@ -222,7 +222,7 @@ export const updateWeather = function (lat, lon) {
                         <h3 class="title-3">Humidity</h3>
                         <div class="wrapper">
                             <span class="m-icon">humidity_percentage</span>
-                            <p class="title-1">${humidity}<sub>%</sub></p>
+                            <p class="title-1">${humidity}%</p>
                         </div>
                     </div>
 
@@ -230,7 +230,7 @@ export const updateWeather = function (lat, lon) {
                         <h3 class="title-3">Pressure</h3>
                         <div class="wrapper">
                             <span class="m-icon">airwave</span>
-                            <p class="title-1">${pressure}<sub>hPa</sub></p>
+                            <p class="title-1">${pressure}hPa</p>
                         </div>
                     </div>
 
@@ -238,7 +238,7 @@ export const updateWeather = function (lat, lon) {
                         <h3 class="title-3">Visibility</h3>
                         <div class="wrapper">
                             <span class="m-icon">visibility</span>
-                            <p class="title-1">${visibility / 1000}<sub>km</sub></p>
+                            <p class="title-1">${visibility / 1000}km</p>
                         </div>
                     </div>
 
@@ -264,7 +264,7 @@ export const updateWeather = function (lat, lon) {
             } = forecast;
 
             hourlySection.innerHTML = `
-                <h2 class="title-2">Today at</h2>
+                <h2 class="title-2" id="forecast-label">Today at</h2>
                 <div class="slider-container">
                     <ul class="slider-list" data-temp></ul>
 

@@ -1,12 +1,12 @@
 'use strict';
 
 export const weekDayNames = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Friday",
-    "Saturday"
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Fri",
+    "Sat"
 ];
 
 export const monthNames = [
