@@ -41,7 +41,7 @@
 }
 
 /* định dạng chữ bên cạnh phần icon logo */
-.sidebar .logo .logo_name{
+.sidebar .logo .logo-name{
   color: #fff;
   font-size: 25px;
   font-weight: 600;
@@ -51,8 +51,8 @@
   transition: all 0.5s ease;
 }
 
-/* định dạng phần logo_name khi ẩn/hiện */
-.sidebar.open .logo .logo_name{
+/* định dạng phần logo-name khi ẩn/hiện */
+.sidebar.open .logo .logo-name{
   opacity: 1;
 }
 
@@ -152,7 +152,7 @@
 }
 
 /* định dạng chữ tiêu đề trong tab */
-.sidebar li a .links_name{
+.sidebar li a .links-name{
   color: #fff;
   font-size: 15px;
   font-weight: 400;
@@ -163,13 +163,13 @@
 }
 
 /* định dạng chữ tiêu đề trong tab khi hiện thanh sidebar */
-.sidebar.open li a .links_name{
+.sidebar.open li a .links-name{
   opacity: 1;
   pointer-events: auto;
 }
 
 /* định dạng icon và chữ tiêu đề trong tab khi di chuột vào */
-.sidebar li a:hover .links_name,
+.sidebar li a:hover .links-name,
 .sidebar li a:hover i{
   transition: all 0.5s ease;
   color: #11101D;
@@ -1127,8 +1127,6 @@ article.container::before {
   }
 
 }
-
-
 
 /* responsive for large than 1200px screen */
 @media (min-width: 1200px) {

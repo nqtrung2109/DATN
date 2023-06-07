@@ -1,17 +1,28 @@
- /* định dạng kiểu và cỡ chữ */
- /* Google Font Link */
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+/* định dạng kiểu và cỡ chữ */
+/* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
- /* định dạng chung cho cả trang */
+/* định dạng chung cho cả trang */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins" , sans-serif;
 }
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;   /* for horizontal scrollbar*/
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 100%, 0.08);
+    border-radius: 500px;
+}
+
 /* css phần css của sidebar */
 /* định dạng thanh sidebar bên trái */
-.sidebar{
+.sidebar {
     position: fixed;
     left: 0;
     top: 0;
@@ -22,10 +33,12 @@
     z-index: 99;
     transition: all 0.5s ease;
 }
+
 /* kích thước sidebar sau khi hiện */
 .sidebar.open{
     width: 250px;
- }
+}
+
 /* định dạng phần logo phía trên thanh sidebar */
 .sidebar .logo{
     height: 60px;
@@ -33,8 +46,9 @@
     align-items: center;
     position: relative;
 }
+
 /* định dạng chữ bên cạnh phần icon logo */
-.sidebar .logo .logo_name{
+.sidebar .logo .logo-name{
     color: #fff;
     font-size: 25px;
     font-weight: 600;
@@ -43,10 +57,12 @@
     opacity: 0;
     transition: all 0.5s ease;
 }
-/* định dạng phần logo_name khi ẩn/hiện */
-.sidebar.open .logo .logo_name{
+
+/* định dạng phần logo-name khi ẩn/hiện */
+.sidebar.open .logo .logo-name{
     opacity: 1;
 }
+
 /* định dạng phần nút bấm ẩn hiện */
 .sidebar .logo #btn{
     color: #fff;
@@ -59,10 +75,12 @@
     cursor: pointer;
     transition: all 0.5s ease;
 }
+
 /* định dạng nút bấm sau khi hiện thanh sidebar */
 .sidebar.open .logo #btn{
     text-align: right;
 }
+
 /*  định dạng chung icon trong thanh sidebar */
 .sidebar i{
     color: #fff;
@@ -71,24 +89,28 @@
     font-size: 28px;
     text-align: center;
     line-height: 60px;
- }
+}
+
 /* định dạng phần list */
 .sidebar .nav-list{
     margin-top: 20px;
     height: 100%;
 }
+
 /* định dạng list tab trong thanh menu */
  .sidebar li{
     position: relative;
     margin: 8px 0;
     list-style: none;
 }
+
 .sidebar li i{
     height: 50px;
     line-height: 50px;
     font-size: 25px;
     border-radius: 12px;
-  }
+}
+
 /* định dạng nội dung hộp nội dung được hiển thị lên khi chỉ vào icon lúc ẩn sidebar */
 .sidebar li .tooltip{
     position: absolute;
@@ -106,6 +128,7 @@
     pointer-events: none;
     transition: 0s;
 }
+
 .sidebar li:hover .tooltip{
     opacity: 1;
     pointer-events: auto;
@@ -113,9 +136,11 @@
     top: 50%;
     transform: translateY(-50%);
 }
+
 .sidebar.open li .tooltip{
     display: none;
 }
+
 /* định dạng các tab trong sidebar */
 .sidebar li a{
     display: flex;
@@ -127,12 +152,14 @@
     transition: all 0.4s ease;
     background: #11101D;
 }
+
 /* định dạng các tab khi chỉ chuột vào */
 .sidebar li a:hover{
     background: #FFF;
 }
+
 /* định dạng chữ tiêu đề trong tab */
-.sidebar li a .links_name{
+.sidebar li a .links-name{
     color: #fff;
     font-size: 15px;
     font-weight: 400;
@@ -141,17 +168,20 @@
     pointer-events: none;
     transition: 0.4s;
 }
+
 /* định dạng chữ tiêu đề trong tab khi hiện thanh sidebar */
-.sidebar.open li a .links_name{
+.sidebar.open li a .links-name{
     opacity: 1;
     pointer-events: auto;
 }
+
 /* định dạng icon và chữ tiêu đề trong tab khi di chuột vào */
-.sidebar li a:hover .links_name,
+.sidebar li a:hover .links-name,
 .sidebar li a:hover i{
     transition: all 0.5s ease;
     color: #11101D;
 }
+
 /* định dạng thanh sreach trên sidebar */
 .sidebar .bx-search{
     position: absolute;
@@ -162,16 +192,19 @@
     background: #1d1b31;
     color: #FFF;
 }
+
 /* định dạng thanh search khi hiện thanh sidebar */
 .sidebar.open .bx-search:hover{
     background: #1d1b31;
     color: #FFF;
 }
+
 /* định dạng thanh search khi di chuột vào */
 .sidebar .bx-search:hover{
     background: #FFF;
     color: #11101d;
 }
+
 /* định dạng chữ nhập vào search */
 .sidebar input{
     font-size: 15px;
@@ -185,11 +218,13 @@
     transition: all 0.5s ease;
     background: #1d1b31;
 }
+
 /* định dạng input khi hiện thanh sidebar */
 .sidebar.open input{
     padding: 0 20px 0 50px;
     width: 100%;
 }
+
 /* định dạng phần content bên phải thanh sidebar */
 #content{
     position: relative;
@@ -201,12 +236,14 @@
     width: calc(100% - 85px);
     transition: all 0s ease;
     z-index: 2;
- }
+}
+
 .sidebar.open ~ #content{
     /* khi sidebar hiện thì phần content cách lề trái là ...*/
    left: 260px;
    width: calc(100% - 260px); 
 }
+
 /*  sử dụng để tùy chỉnh giao diện của trang web cho các thiết bị có kích thước màn hình khác nhau. 
 Đoạn mã trên sẽ được áp dụng cho các thiết bị có chiều rộng màn hình tối đa là 420px. */
 @media (max-width: 420px) {
@@ -215,3 +252,140 @@
     }
 }
 
+main {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden; 
+}
+
+.container { display: flex;}
+
+.content-left {
+    width: 75%;
+    margin: 10px;
+}
+.content-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+.content-table th,
+.content-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+  
+.content-table th {
+    background-color: #f2f2f2;
+    font-size: 18px;
+}
+  
+.content-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+  
+.content-table td:hover {
+    background-color: #ebebeb;
+}
+
+.name {
+    width: 150px;
+}
+
+.bxs-circle {
+   margin-right: 8px;
+   color: red;
+}
+
+#node-1{
+    color: #25ba4d;
+}
+
+/* .connected {
+    color: #25ba4d;
+  } */
+
+.content-right { 
+    width: calc(100% - 75%);
+    margin: 10px;
+}
+
+.container-charts {
+    margin: 10px;
+}
+
+.container-charts .content-charts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container-charts .content-charts .history-charts {
+    width: 50%;
+}
+
+
+@media (max-width: 900px) {
+
+    .container { display: block}
+
+    .content-right { 
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .content-table th,
+    .content-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        display: flex;
+    }
+
+    .container-charts .content-charts {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-charts .content-charts .history-charts {
+        width: 100%;
+    }
+
+    .content-left {
+        width: 100%;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 1100px) {
+
+    .container { display: block}
+
+    .content-right { 
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .content-table th,
+    .content-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        /* display: flex; */
+    }
+
+    .container-charts .content-charts {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-charts .content-charts .history-charts {
+        width: 100%;
+    }
+
+    .content-left {
+        width: 100%;
+        margin-top: 8px;
+    }
+}

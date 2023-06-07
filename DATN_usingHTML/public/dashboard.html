@@ -12,17 +12,23 @@
     <!-- JS -->
     <script src="jquery.js"></script> 
     <script src="socket.io/socket.io.js"></script>
-    <script src="./js/sidebar.js" type="module"></script>
+    <script src="./js/sidebar.js" type="module"></script>   
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.2.7/mqtt.min.js" type="text/javascript"></script> -->
+
 </head>
 
 <body>
+
     <div class="sidebar">
+
         <div class="logo">
-            <div class="logo_name">SideBar</div>
+            <div class="logo-name">SideBar</div>
             <i class='bx bx-menu' id="btn" ></i>
         </div>
 
         <ul class="nav-list">
+
             <li>
                 <i class='bx bx-search' ></i>
                 <input type="text" placeholder="Search...">
@@ -32,7 +38,7 @@
             <li>
                 <a href="./dashboard">
                     <i class='bx bxs-dashboard' ></i>
-                    <span class="links_name">Dashboard</span>
+                    <span class="links-name">Dashboard</span>
                 </a>
                 <span class="tooltip">Dashboard</span>
             </li>
@@ -40,7 +46,7 @@
             <li>
                 <a href="/weather">
                     <i class='bx bxs-map'></i>
-                    <span class="links_name">Weather</span>
+                    <span class="links-name">Weather</span>
                 </a>
                 <span class="tooltip">Weather</span>
             </li>
@@ -48,14 +54,426 @@
             <li>
                 <a href="#">
                     <i class='bx bx-log-out'></i>
-                    <span class="links_name">Log out</span>
+                    <span class="links-name">Log out</span>
                 </a>
                 <span class="tooltip">Log out</span>
             </li>
+
         </ul>
+
     </div>
+
     <section id="content">
-        <h2>Đây là trang dashboard</h2>
+
+        <main>
+
+            <div class="container">
+
+                <div class="content-left">
+
+                    <table class="content-table">
+
+                        <!-- header -->
+                        <thead>
+                            <tr>
+                                <th>Node</th>
+                                <th>Time</th>
+                                <th>Temperature (&degC)</th>
+                                <th>Humidity (%)</th>
+                                <th>CO2 (ppm)</th>
+                                <th>PM2.5 (&micro;g/m&sup3;)</th>
+                                <th>UV (mW/cm&sup2)</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+
+                            <!-- node 1 -->
+                            <tr>
+                                <td class="name"><i class='bx bxs-circle' id="node-1"></i>Node 1</td>
+                                <td class="time">0</td>
+                                <td class="temp"  id="temp-1-value">0</td>
+                                <td class="hum" id="hum-1-value">0</td>
+                                <td class="CO2" id="co2-1-value">0</td>
+                                <td class="PM2.5" id="pm2.5-1-value">0</td>
+                                <td class="UV" id="uv-1-value">0</td>
+                            </tr>
+        
+                            <!-- node 2 -->
+                            <tr>
+                                <td class="name"><i class='bx bxs-circle' id="node-2"></i>Node 2</td>
+                                <td class="time">0</td>
+                                <td class="temp" id="temp-2-value">0</td>
+                                <td class="hum">0</td>
+                                <td class="CO2">0</td>
+                                <td class="PM2.5">0</td>
+                                <td class="UV">0</td>
+                            </tr>
+        
+                            <!-- node 3 -->
+                            <tr>
+                                <td class="name"><i class='bx bxs-circle' id="node-3"></i>Node 3</td>
+                                <td class="time">0</td>
+                                <td class="temp" id="temp-3-value">0</td>
+                                <td class="hum">0</td>
+                                <td class="CO2">0</td>
+                                <td class="PM2.5">0</td>
+                                <td class="UV">0</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+       
+                <div class="content-right">
+                    <h2>Đây là phần đánh giá</h2>
+                </div>
+
+            </div>
+            
+            <!-- charts -->
+            <div class="container-charts">
+
+                <h2>Charts</h2>
+
+                <div class="content-charts">
+
+                    <div class="history-charts">
+                        <canvas id="temp-chart"></canvas>
+                    </div>
+
+                    <div class="history-charts">
+                        <canvas id="hum-chart"></canvas>
+                    </div>
+
+                    <div class="history-charts">
+                        <canvas id="pm2.5-chart"></canvas>
+                    </div>
+
+                    <div class="history-charts">
+                        <canvas id="uv-chart"></canvas>
+                    </div>
+
+                </div>
+                
+            </div>
+
+        </main>
+
     </section>
 </body>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<script>
+
+    const socket = io(); // Kết nối tới máy chủ thông qua socket.io
+
+    const tempElement1 = document.getElementById("temp-1-value");
+    const humElement1 = document.getElementById("hum-1-value");
+    const co2Element1 = document.getElementById("co2-1-value");
+    const uvElement1 = document.getElementById("uv-1-value");
+
+    const tempElement2 = document.getElementById("temp-2-value");
+    const tempElement3 = document.getElementById("temp-3-value");
+    
+
+    // tạo biểu đồ
+    let timeTemp = [0, 1, 2, 3, 4, 5];
+
+    // biểu đồ nhiệt độ
+    let dataTemp1 = [0,0,0,0,0,0];
+    let dataTemp2 = [0,0,0,0,0,0];
+    let dataTemp3 = [0,0,0,0,0,0];
+
+    var ctx = document.getElementById('temp-chart');
+    var chartTemp = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timeTemp,
+            datasets: [
+                { 
+                    label: 'Node 1',
+                    data: dataTemp1,
+                    borderColor: 'red',
+                    fill: false
+                },
+                { 
+                    label: 'Node 2',
+                    data: dataTemp2,
+                    borderColor: 'blue',
+                    fill: false
+                },
+                { 
+                    label: 'Node 3',
+                    data: dataTemp3,
+                    borderColor: 'green',
+                    fill: false
+                },
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 15,
+                },
+            scales: {
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Temperature (°C)',
+                            fontSize: 15,
+                            fontStyle: 'bold',
+                            beginAtZero: true,
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 10,
+                            max: 50,
+                        },
+                    },
+                ],
+            },
+        }
+    });
+    
+    // biểu đồ độ ẩm   
+    let dataHum1 = [0,0,0,0,0,0];
+    let dataHum2 = [0,0,0,0,0,0];
+    let dataHum3 = [0,0,0,0,0,0];
+
+    var ctx = document.getElementById('hum-chart');
+    var chartHum = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timeTemp,
+            datasets: [
+                { 
+                    label: 'Node 1',
+                    data: dataHum1,
+                    borderColor: 'red',
+                    fill: false
+                },
+                { 
+                    label: 'Node 2',
+                    data: dataHum2,
+                    borderColor: 'blue',
+                    fill: false
+                },
+                { 
+                    label: 'Node 3',
+                    data: dataHum3,
+                    borderColor: 'green',
+                    fill: false
+                },
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 15,
+                },
+            scales: {
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Humidity (%)',
+                            fontSize: 15,
+                            fontStyle: 'bold',
+                            beginAtZero: true,
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 20,
+                            max: 100,
+                        },
+                    },
+                ],
+            },
+        }
+    });
+
+    // biểu đồ pm2.5
+    let dataPm1 = [0,0,0,0,0,0];
+    let dataPm2 = [0,0,0,0,0,0];
+    let dataPm3 = [0,0,0,0,0,0];
+
+    var ctx = document.getElementById('pm2.5-chart');
+    var chartPm = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timeTemp,
+            datasets: [
+                { 
+                    label: 'Node 1',
+                    data: dataPm1,
+                    borderColor: 'red',
+                    fill: false
+                },
+                { 
+                    label: 'Node 2',
+                    data: dataPm2,
+                    borderColor: 'blue',
+                    fill: false
+                },
+                { 
+                    label: 'Node 3',
+                    data: dataPm3,
+                    borderColor: 'green',
+                    fill: false
+                },
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 15,
+                },
+            scales: {
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'PM2.5 (µg/m³)',
+                            fontSize: 15,
+                            fontStyle: 'bold',
+                            beginAtZero: true,
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 10,
+                            max: 50,
+                        },
+                    },
+                ],
+            },
+        }
+    });
+
+    // biểu đồ uv
+    let dataUv1 = [0,0,0,0,0,0];
+    let dataUv2 = [0,0,0,0,0,0];
+    let dataUv3 = [0,0,0,0,0,0];
+
+    var ctx = document.getElementById('uv-chart');
+    var chartUV = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timeTemp,
+            datasets: [
+                { 
+                    label: 'Node 1',
+                    data: dataUv1,
+                    borderColor: 'red',
+                    fill: false
+                },
+                { 
+                    label: 'Node 2',
+                    data: dataUv2,
+                    borderColor: 'blue',
+                    fill: false
+                },
+                { 
+                    label: 'Node 3',
+                    data: dataUv3,
+                    borderColor: 'green',
+                    fill: false
+                },
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 15,
+                },
+            scales: {
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'UV (mW/cm²)',
+                            fontSize: 15,
+                            fontStyle: 'bold',
+                            beginAtZero: true,
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 3,
+                            max: 15,
+                        },
+                    },
+                ],
+            },
+        }
+    });
+
+    //cập nhật dữ liệu
+
+    document.addEventListener('DOMContentLoaded', function() {
+        //const socket = io(); // Kết nối tới máy chủ thông qua socket.io
+        //const tempElement1 = document.getElementById("temp-1-value");
+        // Gửi yêu cầu lấy dữ liệu mới nhất từ server khi trang được load
+        socket.emit('get-latest-data1');
+        socket.emit('get-latest-data2');
+        socket.emit('get-latest-data3');
+
+        socket.on("temp-1-update", (temp_1) => {
+
+            // Cập nhật dữ liệu nhiệt độ node 1 vào bảng
+            tempElement1.innerText = temp_1;
+
+            // cập nhật dữ liệu nhiệt độ node 1 vào biểu đồ
+            dataTemp1[0] = temp_1;
+            let newDataTemp1 = dataTemp1[0];
+            oldDataTemp1 = dataTemp1.slice(1);
+            oldDataTemp1.push(newDataTemp1);
+            dataTemp1 = [].concat(oldDataTemp1);
+            chartTemp.data.datasets[0].data = dataTemp1;
+            chartTemp.update(0);
+        });
+
+        socket.on("temp-2-update", (temp_2) => {
+            // cập nhật dữ liệu nhiệt độ node 2 vào bảng
+            tempElement2.innerText = temp_2;
+        });
+
+        socket.on("temp-3-update", (temp_3) => {
+            // cập nhật dữ liệu nhiệt độ node 3 vào bảng
+            tempElement3.innerText = temp_3;
+        });
+
+    });
+
+
+    // socket.on("hum-1-update", (hum_1) => {
+    //     humElement1.innerText = hum_1;
+    // });
+
+    // socket.on("co2-1-update", (co2_1) => {
+    //     co2Element1.innerText = co2_1;
+    // });
+
+    // socket.on("uv-1-update", (uv_1) => {
+    //     uvElement1.innerText = uv_1;
+    // });
+
+
+    // let flagPower = setInterval(() => {
+    // let newDataTemp1 = dataTemp1[0];
+    //     oldDataTemp1 = dataTemp1.slice(1);
+    // oldDataTemp1.push(newDataTemp1);
+    // dataTemp1 = [].concat(oldDataTemp1);
+    // chartTemp.data.datasets[0].data = dataTemp1;
+    // chartTemp.update(0);
+    // }, 2000);
+
+</script>
+
 </html>
+
+
+
