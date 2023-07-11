@@ -5,6 +5,7 @@ export const weekDayNames = [
     "Mon",
     "Tue",
     "Wed",
+    "Thur",
     "Fri",
     "Sat"
 ];
@@ -30,11 +31,20 @@ export const monthNames = [
     * @returns {string} date string. format" "Sunday 10, Jan"
 */
 export const getDate = function (dateUnix, timezone) {
+    
     const date = new Date((dateUnix + timezone) * 1000);
     const weekDayName = weekDayNames[date.getUTCDay()];
+    const monthDayName = date.getUTCDate();
     const monthName = monthNames[date.getUTCMonth()];
 
-    return `${weekDayName} ${date.getUTCDay()}, ${monthName}`;
+    console.log("dateUnix:", dateUnix);
+    console.log("timezone:", timezone);
+    console.log("UTChour:", date.getUTCHours());
+    console.log("UTCday week:", date.getUTCDay());
+    console.log("UTCday month:", monthDayName);
+    console.log("UTCday month:", date.getUTCMonth());
+
+    return `${weekDayName} ${monthDayName}, ${monthName}`;
 }
 
 /** 

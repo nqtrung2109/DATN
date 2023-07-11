@@ -9,27 +9,31 @@ const EventsSchema = new Schema({
         required: true
     },
     node: {
-        type: Number,
+        type: String,
+        required: true
+    },
+    time: {
+        type: String,
         required: true
     },
     temperature: {
-        type: Number,
+        type: String,
         required: true
     },
     humidity: {
-        type: Number,
+        type: String,
         required: true
     },
     co2: {
-        type: Number,
+        type: String,
         required: true
     },
     pm25: {
-        type: Number,
+        type: String,
         required: true
     },
     uv: {
-        type: Number,
+        type: String,
         required: true
     },
     created: {
@@ -44,4 +48,4 @@ const EventsSchema = new Schema({
     }
 );
 
-module.exports = mongoose.model('Event1', EventsSchema,'test_node1');
+module.exports = mongoose.model('Event1', EventsSchema,'Node_1');

@@ -91,34 +91,43 @@
                             <!-- node 1 -->
                             <tr>
                                 <td class="name"><i class='bx bxs-circle' id="node-1"></i>Node 1</td>
-                                <td class="time">0</td>
+                                <td class="time">
+                                    <div id="date-1-value">0</div>
+                                    <div id="hour-1-value">0</div>
+                                </td>
                                 <td class="temp"  id="temp-1-value">0</td>
                                 <td class="hum" id="hum-1-value">0</td>
-                                <td class="CO2" id="co2-1-value">0</td>
-                                <td class="PM2.5" id="pm2.5-1-value">0</td>
-                                <td class="UV" id="uv-1-value">0</td>
+                                <td class="co2" id="co2-1-value">0</td>
+                                <td class="pm25" id="pm25-1-value">0</td>
+                                <td class="uv" id="uv-1-value">0</td>
                             </tr>
         
                             <!-- node 2 -->
                             <tr>
                                 <td class="name"><i class='bx bxs-circle' id="node-2"></i>Node 2</td>
-                                <td class="time">0</td>
+                                <td class="time">
+                                    <div id="date-2-value">0</div>
+                                    <div id="hour-2-value">0</div>
+                                </td>
                                 <td class="temp" id="temp-2-value">0</td>
-                                <td class="hum">0</td>
-                                <td class="CO2">0</td>
-                                <td class="PM2.5">0</td>
-                                <td class="UV">0</td>
+                                <td class="hum" id="hum-2-value">0</td>
+                                <td class="co2" id="co2-2-value">0</td>
+                                <td class="pm25" id="pm25-2-value">0</td>
+                                <td class="uv" id="uv-2-value">0</td>
                             </tr>
         
                             <!-- node 3 -->
                             <tr>
                                 <td class="name"><i class='bx bxs-circle' id="node-3"></i>Node 3</td>
-                                <td class="time">0</td>
+                                <td class="time">
+                                    <div id="date-3-value">0</div>
+                                    <div id="hour-3-value">0</div>
+                                </td>
                                 <td class="temp" id="temp-3-value">0</td>
-                                <td class="hum">0</td>
-                                <td class="CO2">0</td>
-                                <td class="PM2.5">0</td>
-                                <td class="UV">0</td>
+                                <td class="hum" id="hum-3-value">0</td>
+                                <td class="co2" id="co2-3-value">0</td>
+                                <td class="pm25" id="pm25-3-value">0</td>
+                                <td class="uv" id="uv-3-value">0</td>
                             </tr>
                         </tbody>
 
@@ -175,13 +184,28 @@
     const humElement1 = document.getElementById("hum-1-value");
     const co2Element1 = document.getElementById("co2-1-value");
     const uvElement1 = document.getElementById("uv-1-value");
+    const pm25Element1 = document.getElementById("pm25-1-value");
+    const dateElement1 = document.getElementById("date-1-value");
+    const hourElement1 = document.getElementById("hour-1-value");
 
     const tempElement2 = document.getElementById("temp-2-value");
+    const humElement2 = document.getElementById("hum-2-value");
+    const co2Element2 = document.getElementById("co2-2-value");
+    const uvElement2 = document.getElementById("uv-2-value");
+    const pm25Element2 = document.getElementById("pm25-2-value");
+    const dateElement2 = document.getElementById("date-2-value");
+    const hourElement2 = document.getElementById("hour-2-value");
+
     const tempElement3 = document.getElementById("temp-3-value");
-    
+    const humElement3 = document.getElementById("hum-3-value");
+    const co2Element3 = document.getElementById("co2-3-value");
+    const uvElement3 = document.getElementById("uv-3-value");
+    const pm25Element3 = document.getElementById("pm25-3-value");
+    const dateElement3 = document.getElementById("date-3-value");
+    const hourElement3 = document.getElementById("hour-3-value");
 
     // tạo biểu đồ
-    let timeTemp = [0, 1, 2, 3, 4, 5];
+    let time = [0, 1, 2, 3, 4, 5];
 
     // biểu đồ nhiệt độ
     let dataTemp1 = [0,0,0,0,0,0];
@@ -192,7 +216,7 @@
     var chartTemp = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: timeTemp,
+            labels: time,
             datasets: [
                 { 
                     label: 'Node 1',
@@ -219,7 +243,7 @@
                 display: true,
                 fontSize: 15,
                 },
-            scales: {
+            scales: {               
                 yAxes: [
                     {
                         scaleLabel: {
@@ -249,7 +273,7 @@
     var chartHum = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: timeTemp,
+            labels: time,
             datasets: [
                 { 
                     label: 'Node 1',
@@ -276,7 +300,7 @@
                 display: true,
                 fontSize: 15,
                 },
-            scales: {
+            scales: {       
                 yAxes: [
                     {
                         scaleLabel: {
@@ -306,7 +330,7 @@
     var chartPm = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: timeTemp,
+            labels: time,
             datasets: [
                 { 
                     label: 'Node 1',
@@ -333,7 +357,7 @@
                 display: true,
                 fontSize: 15,
                 },
-            scales: {
+            scales: {           
                 yAxes: [
                     {
                         scaleLabel: {
@@ -360,10 +384,10 @@
     let dataUv3 = [0,0,0,0,0,0];
 
     var ctx = document.getElementById('uv-chart');
-    var chartUV = new Chart(ctx, {
+    var chartUv = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: timeTemp,
+            labels: time,
             datasets: [
                 { 
                     label: 'Node 1',
@@ -390,7 +414,7 @@
                 display: true,
                 fontSize: 15,
                 },
-            scales: {
+            scales: {          
                 yAxes: [
                     {
                         scaleLabel: {
@@ -421,13 +445,43 @@
         socket.emit('get-latest-data2');
         socket.emit('get-latest-data3');
 
-        socket.on("temp-1-update", (temp_1) => {
+        socket.on("date-1-update", (date_1) => {
+            dateElement1.innerText = date_1;
+        });
+
+        socket.on("hour-1-update", (hour_1) => {
+            hourElement1.innerText = hour_1;
+            console.log("hour cua node 1 la: " + hour_1);
+
+            time.push(hour_1);
+
+            // Giới hạn số lượng phần tử trong timeTemp, nếu muốn giới hạn số lượng, bạn có thể thay đổi giá trị 6 bên dưới thành số phần tử tối đa mong muốn
+            if (time.length > 6) {
+                time.shift(); // Xóa phần tử đầu tiên
+            }
+
+            // Cập nhật nhãn trục X của biểu đồ
+            chartTemp.data.labels = time;
+            chartTemp.update();
+
+            chartHum.data.labels = time;
+            chartHum.update();
+
+            chartPm.data.labels = time;
+            chartPm.update();
+
+            chartUv.data.labels = time;
+            chartUv.update();
+        });
+
+        socket.on("temp-1-update", (temp_1, time_1) => {
 
             // Cập nhật dữ liệu nhiệt độ node 1 vào bảng
             tempElement1.innerText = temp_1;
 
             // cập nhật dữ liệu nhiệt độ node 1 vào biểu đồ
             dataTemp1[0] = temp_1;
+
             let newDataTemp1 = dataTemp1[0];
             oldDataTemp1 = dataTemp1.slice(1);
             oldDataTemp1.push(newDataTemp1);
@@ -436,14 +490,117 @@
             chartTemp.update(0);
         });
 
+        socket.on("hum-1-update", (hum_1) => {
+
+            // cập nhật dữ liệu độ ẩm node 1 vào bảng
+            humElement1.innerText = hum_1;
+
+            // cập nhật dữ liệu độ ẩm vào đồ thị
+            dataHum1[0] = hum_1;
+            let newdataHum1 = dataHum1[0];
+            olddataHum1 = dataHum1.slice(1);
+            olddataHum1.push(newdataHum1);
+            dataHum1 = [].concat(olddataHum1);
+            chartHum.data.datasets[0].data = dataHum1;
+            chartHum.update(0);
+        });
+
+        socket.on("co2-1-update", (co2_1) => {
+
+            // cập nhật dữ liệu co2 node 1 vào bảng
+            co2Element1.innerText = co2_1;
+            
+        });
+
+        socket.on("uv-1-update", (uv_1) => {
+
+            // cập nhật dữ liệu uv node 1 vào bảng
+            uvElement1.innerText = uv_1;
+
+            // cập nhật dữ liệu uv node 1 vào đồ thị
+            dataUv1[0] = uv_1;
+
+            let newDataUv1 = dataUv1[0];
+            oldDataUv1 = dataUv1.slice(1);
+            oldDataUv1.push(newDataUv1);
+            dataUv1 = [].concat(oldDataUv1);
+            chartUv.data.datasets[0].data = dataUv1;
+            chartUv.update(0);
+        });
+
+        socket.on("pm25-1-update", (pm25_1) => {
+
+            // cập nhật dữ liệu uv node 1 vào bảng
+            pm25Element1.innerText = pm25_1;
+
+            // cập nhật dữ liệu uv node 1 vào đồ thị
+            dataPm1[0] = pm25_1;
+
+            let newDataPm1 = dataPm1[0];
+            oldDataPm = dataPm1.slice(1);
+            oldDataPm.push(newDataPm1);
+            dataPm1 = [].concat(oldDataPm);
+            chartPm.data.datasets[0].data = dataPm1;
+            chartPm.update(0);
+        });
+
+        // cập nhật dữ liệu node 2
+        socket.on("date-2-update", (date_2) => {
+            dateElement2.innerText = date_2;
+        });
+
+        socket.on("hour-2-update", (hour_2) => {
+            hourElement2.innerText = hour_2;
+        });
+
         socket.on("temp-2-update", (temp_2) => {
-            // cập nhật dữ liệu nhiệt độ node 2 vào bảng
             tempElement2.innerText = temp_2;
+        });
+
+        socket.on("hum-2-update", (hum_2) => {
+            humElement2.innerText = hum_2;
+        });
+
+        socket.on("co2-2-update", (co2_2) => {
+            co2Element2.innerText = co2_2;
+        });
+
+        socket.on("uv-2-update", (uv_2) => {
+            uvElement2.innerText = uv_2;
+        });
+
+        socket.on("pm25-2-update", (pm25_2) => {
+            pm25Element2.innerText = pm25_2;
+        });
+
+        // cập nhật dữ liệu node 3
+        socket.on("date-3-update", (date_3) => {
+            dateElement3.innerText = date_3;
+        });
+
+        socket.on("hour-3-update", (hour_3) => {
+            hourElement3.innerText = hour_3;
         });
 
         socket.on("temp-3-update", (temp_3) => {
             // cập nhật dữ liệu nhiệt độ node 3 vào bảng
             tempElement3.innerText = temp_3;
+        });
+       
+        socket.on("hum-3-update", (hum_3) => {
+            humElement3.innerText = hum_3;
+        });
+
+        socket.on("co2-3-update", (co2_3) => {
+            co2Element3.innerText = co2_3;
+        });
+
+        socket.on("uv-3-update", (uv_3) => {
+            uvElement3.innerText = uv_3;
+        });
+
+        socket.on("pm25-3-update", (pm25_3) => {
+            pm25Element3.innerText = pm25_3;
         });
 
     });

@@ -329,6 +329,11 @@ export const updateWeather = function (lat, lon) {
                 const [{icon, description}] = weather;
                 const date = new Date(dt_txt);
 
+                console.log(dt_txt);
+                console.log(date.getDate());
+                console.log(date.getDay());
+                console.log(date.getMonth());
+
                 const li = document.createElement('li');
                 li.classList.add("card-item");
                 li.innerHTML = `
@@ -339,8 +344,8 @@ export const updateWeather = function (lat, lon) {
                         </span>
                     </div>
 
-                    <p class="label-1">${date.getDate()} ${module.monthNames[date.getUTCMonth()]}</p>
-                    <p class="label-1">${module.weekDayNames[date.getUTCDay()]}</p>
+                    <p class="label-1">${date.getDate()} ${module.monthNames[date.getMonth()]}</p>
+                    <p class="label-1">${module.weekDayNames[date.getDay()]}</p>
                 `;
                 forecastSection.querySelector("[data-forecast-list]").appendChild(li);
             }
