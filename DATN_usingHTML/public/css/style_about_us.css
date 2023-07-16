@@ -1,0 +1,144 @@
+/* định dạng kiểu và cỡ chữ */
+/* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+/* định dạng chung cho cả trang */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins" , sans-serif;
+}
+
+/* css của phần about us */
+.team-section{
+    display: flex;
+    width: 100%;
+}
+
+.team-section .container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 98%;
+    margin: auto;
+}
+
+/* định dạng phần tiêu đề */
+.team-section .container .title{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.team-section .container .title h1{
+    font-size: 35px;
+}
+
+.team-section .container .title h2{
+    font-size: 25px;
+}
+
+.team-section .container .title p{
+    font-size: 18px;
+}
+
+/* định dạng khối thẻ các thành viên */
+.team-section .container .team-card{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* định dạng thẻ */
+.team-section .container .team-card .card{
+    width: 315px;
+    height: 400px;
+    padding: 30px 15px;
+    margin: 20px 70px 0 0;
+    box-shadow: 0.6em 0.6em 1.2em #d2dce9,
+                -0.5em -0.5em 1em white;
+    border-radius: 15px;
+}
+
+.team-section .container .team-card .card .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* định dạng ảnh trong thẻ */
+.team-section .container .team-card .card .content .img-member{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.team-section .container .team-card .card .content .img-member img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* định dạng phần thông tin thành viên trong thẻ */
+.team-section .container .team-card .card .content .content-member h4{
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.team-section .container .team-card .card .content .content-member h5{
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* định dạng icon thông tin trong thẻ */
+.team-section .container .team-card .card .content .sci{
+    margin-top: 15px;
+}
+
+.team-section .container .team-card .card .content .sci a{
+    text-decoration: none;
+    color: #6c758f;
+    font-size: 30px;
+    margin: 10px 20px 0 20px;
+    transition: color 0.4s;
+}
+
+.team-section .container .team-card .card .content .sci a:hover{
+    color: #0196e3;
+}
+
+.team-section .container .team-card .next-btn {
+    background-color:#007bff;
+    border-color: #007bff;
+	border-radius: 13px;
+	color:#ffffff;
+	font-size:17px;
+	font-weight:bold;
+	padding:15px 30px;
+    margin-top: 350px;
+}
+
+.team-section .container .team-card .next-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.team-section .container .team-card .next-btn:hover {
+    background-color: #1f91f5;
+}
+
+
+@media (max-width: 900px) {
+    .team-section .container .team-card .next-btn { margin-top: 10px;}
+}

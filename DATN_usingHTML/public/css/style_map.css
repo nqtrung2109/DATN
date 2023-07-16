@@ -1,0 +1,10 @@
+#map { height: 625px; }
+
+.node-popup {
+    font-weight: bold;
+    text-align: center;
+}
+
+.popup-container {
+    width: 130px;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+
+    <!--     CSS     -->
+    <link rel="stylesheet" href="./css/style_about_us.css">
+    <!--    Front Icon   -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <!-- JS -->
+    <script src="jquery.js"></script> 
+    <script src="socket.io/socket.io.js"></script>
+
+</head>
+<body>
+
+    <div class="team-section">
+
+        <div class ="container">
+
+            <div class="title" >
+                <h1 style=>Welcome to the Website</h1>
+                <h2>We are the design team</h2>
+                <p>Đây là trang web giúp bạn có thể theo dõi các node giám sát chất lượng không khí của chúng tôi.
+                    Sản phẩm này đang trong quá trình hoàn thiện và phát triển, chính vì thế rất mong nhận được những
+                    ý kiến đóng góp từ tất cả các bạn, để chúng tôi có thể cải thiện chất lượng dịch vụ tốt hơn nữa. Mọi 
+                    nhận xét và đề xuất xin vui lòng gửi đến địa chỉ của các thành viên được cung cấp bên dưới hoặc địa chỉ
+                    mail <b>trung.nq181797@sis.hust.edu.vn</b>.
+                </p>
+            </div> 
+
+            <div class="team-card">
+
+                <div class="card">
+                    <div class="content">
+                        <div class="img-member">
+                            <img src="./image/nguoidung.jpg">
+                        </div>
+                        <div class="content-member">
+                            <h4>Nguyễn Quang Trung</h4>
+                            <h5>20181797</h5>
+                        </div>
+                        <div class="sci">
+                            <a href="https://www.facebook.com/quangtrung.nguyen.585112/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://github.com/nqtrung2109" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            <a href="https://twitter.com/iMc58358788" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="card">
+                    <div class="content">
+                        <div class="img-member">
+                            <img src="./image/nguoidung.jpg">
+                        </div>
+                        <div class="content-member">
+                            <h4>Lê Tú Khải</h4>
+                            <h5>20181542</h5>
+                        </div>
+                        <div class="sci">
+                            <a href="https://www.facebook.com/tu.khai.35/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://github.com/letukhai" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="next-btn">
+                    <a href="/dashboard">Next</a>
+                </div>  
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    var socket= io();
+</script>
+
+</html>
+

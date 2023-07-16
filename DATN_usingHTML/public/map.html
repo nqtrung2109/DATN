@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"> 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+    <!--     CSS     -->
+    <link rel="stylesheet" href="./css/style_map.css">
+    <link rel="stylesheet" href="./css/style_sidebar.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <!--    Front Icon   -->
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' >
+    <!-- JS -->
+    <script src="jquery.js"></script> 
+    <script src="socket.io/socket.io.js"></script>
+    <script src="./js/sidebar.js" type="module"></script>  
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.2.7/mqtt.min.js" type="text/javascript"></script> -->
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <div class="logo">
+            <div class="logo-name">SideBar</div>
+            <i class='bx bx-menu' id="btn" ></i>
+        </div>
+
+        <ul class="nav-list">
+
+            <li>
+                <i class='bx bx-search' ></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+            </li>
+
+            <li>
+                <a href="/dashboard">
+                    <i class='bx bxs-dashboard' ></i>
+                    <span class="links-name">Dashboard</span>
+                </a>
+                <span class="tooltip">Dashboard</span>
+            </li>
+
+            <li>
+                <a href="/weather">
+                    <i class='bx bx-cloud'></i>
+                    <span class="links-name">Weather</span>
+                </a>
+                <span class="tooltip">Weather</span>
+            </li>
+
+            <li>
+                <a href="/map">
+                    <i class='bx bxs-map'></i>
+                    <span class="links-name">Map</span>
+                </a>
+                <span class="tooltip">Map</span>
+            </li>
+          
+            <li>
+                <a href="/about_us">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links-name">Log out</span>
+                </a>
+                <span class="tooltip">Log out</span>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <section id="content">
+        <div id="map"></div>
+    </section>
+    
+</body>
+
+<script>
+
+    var socket = io();
+
+    var map = L.map('map').setView([20.997559718421638, 105.84059694322164], 13);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    var popupContent1 = `
+        <div class="popup-container">
+            <div class="node-popup">Node 1</div>
+            <div class="temp-popup">Temperature: <span id="temp-popup-1-value">0</span>&degC</div>
+            <div class="hum-popup">Humidity: <span id="hum-popup-1-value">0</span>%</div>
+            <div class="co2-popup">CO2: <span id="co2-popup-1-value">0</span>ppm</div>
+            <div class="pm25-popup">PM2.5: <span id="pm25-popup-1-value">0</span>&micro;g/m&sup3;</div>
+            <div class="uv-popup"> UV: <span id="uv-popup-1-value">0</span>mW/cm&sup2</div>
+        </div>
+    `;
+    var popupContent2 = `
+        <div class="popup-container">
+            <div class="node-popup">Node 2</div>
+            <div class="temp-popup">Temperature: <span id="temp-popup-2-value">0</span>&degC</div>
+            <div class="hum-popup">Humidity: <span id="hum-popup-2-value">0</span>%</div>
+            <div class="co2-popup">CO2: <span id="co2-popup-2-value">0</span>ppm</div>
+            <div class="pm25-popup">PM2.5: <span id="pm25-popup-2-value">0</span>&micro;g/m&sup3;</div>
+            <div class="uv-popup"> UV: <span id="uv-popup-2-value">0</span>mW/cm&sup2</div>
+        </div>
+    `;
+    var popupContent3 = `
+        <div class="popup-container">
+            <div class="node-popup">Node 3</div>
+            <div class="temp-popup">Temperature: <span id="temp-popup-3-value">0</span>&degC</div>
+            <div class="hum-popup">Humidity: <span id="hum-popup-3-value">0</span>%</div>
+            <div class="co2-popup">CO2: <span id="co2-popup-3-value">0</span>ppm</div>
+            <div class="pm25-popup">PM2.5: <span id="pm25-popup-3-value">0</span>&micro;g/m&sup3;</div>
+            <div class="uv-popup"> UV: <span id="uv-popup-3-value">0</span>mW/cm&sup2</div>
+        </div>
+    `;
+    // tạo các điểm trên bản đồ
+    var marker1 = L.marker([20.997559718421638, 105.84059694322164]).addTo(map);
+    var marker2 = L.marker([21.00525879370923, 105.84390198131787]).addTo(map);
+    var marker3 = L.marker([20.998357, 105.847830]).addTo(map);
+    // thêm nội dung vào các điểm
+    marker1.bindPopup(popupContent1);
+    marker2.bindPopup(popupContent2);
+    marker3.bindPopup(popupContent3);
+
+    // gửi dữ liệu đến điểm 1
+    marker1.on('popupopen', function() {
+        // lưu trạng thái điểm 1
+        localStorage.setItem('popup1Open', true);
+        // Gửi yêu cầu lấy dữ liệu nhiệt độ tới server
+        socket.emit('get-latest-data1');
+    });
+
+    marker1.on('popupclose', function() {
+        // lưu trạng thái điểm 1
+        localStorage.removeItem('popup1Open');
+        // Reset giá trị của nhiệt độ khi closed popup
+        //document.getElementById('temp-popup-1-value').textContent = '0';
+        // var tempValue = document.getElementById('temp-popup-1-value').textContent;
+        // console.log(tempValue);
+    });
+
+    socket.on("temp-1-update", (temp_1) => {
+        // Gửi dữ liệu nhiệt độ đến điểm 1
+        document.getElementById('temp-popup-1-value').textContent = temp_1;
+    });
+
+    socket.on("hum-1-update", (hum_1) => {
+        // Gửi dữ liệu nhiệt độ đến điểm 1
+        document.getElementById('hum-popup-1-value').textContent = hum_1;
+    });
+
+    socket.on("co2-1-update", (co2_1) => {
+        // Gửi dữ liệu nhiệt độ đến điểm 1
+        document.getElementById('co2-popup-1-value').textContent = co2_1;
+    });
+
+    socket.on("uv-1-update", (uv_1) => {
+        // Gửi dữ liệu nhiệt độ đến điểm 1
+        document.getElementById('uv-popup-1-value').textContent = uv_1;
+    });
+
+    socket.on("pm25-1-update", (pm25_1) => {
+        // Gửi dữ liệu nhiệt độ đến điểm 1
+        document.getElementById('pm25-popup-1-value').textContent = pm25_1;
+    });
+
+    // gửi dữ liệu đến điểm 2
+    marker2.on('popupopen', function() {
+        localStorage.setItem('popup2Open', true);
+        socket.emit('get-latest-data2');
+    });
+
+    marker2.on('popupclose', function() {
+        localStorage.removeItem('popup2Open');
+        //document.getElementById('temp-popup-2-value').textContent = '0';
+    });
+
+    socket.on("temp-2-update", (temp_2) => {
+        document.getElementById('temp-popup-2-value').textContent = temp_2;
+    });
+    socket.on("hum-2-update", (hum_2) => {
+        document.getElementById('hum-popup-2-value').textContent = hum_2;
+    });
+
+    socket.on("co2-2-update", (co2_2) => {
+        document.getElementById('co2-popup-2-value').textContent = co2_2;
+    });
+
+    socket.on("uv-2-update", (uv_2) => {
+        document.getElementById('uv-popup-2-value').textContent = uv_2;
+    });
+
+    socket.on("pm25-2-update", (pm25_2) => {
+        document.getElementById('pm25-popup-2-value').textContent = pm25_2;
+    });
+
+    // gửi dữ liệu đến điểm 3
+    marker3.on('popupopen', function() {
+        localStorage.setItem('popup3Open', true);
+        socket.emit('get-latest-data3');
+    });
+
+    marker3.on('popupclose', function() {
+        localStorage.removeItem('popup3Open');
+        //document.getElementById('temp-popup-3-value').textContent = '0';
+    });
+
+    socket.on("temp-3-update", (temp_3) => {
+        document.getElementById('temp-popup-3-value').textContent = temp_3;
+    });
+    socket.on("hum-3-update", (hum_3) => {
+        document.getElementById('hum-popup-3-value').textContent = hum_3;
+    });
+
+    socket.on("co2-3-update", (co2_3) => {
+        document.getElementById('co2-popup-3-value').textContent = co2_3;
+    });
+
+    socket.on("uv-3-update", (uv_3) => {
+        document.getElementById('uv-popup-3-value').textContent = uv_3;
+    });
+
+    socket.on("pm25-3-update", (pm25_3) => {
+        document.getElementById('pm25-popup-3-value').textContent = pm25_3;
+    });
+
+    // xử lý trạng thái popup của các điểm
+    window.addEventListener('load', function() {
+        var isPopup1Open = localStorage.getItem('popup1Open');
+        var isPopup2Open = localStorage.getItem('popup2Open');
+        var isPopup3Open = localStorage.getItem('popup3Open');
+        if (isPopup1Open) {
+            marker1.openPopup();
+        }
+        if (isPopup2Open) {
+            marker2.openPopup();
+        }
+        if (isPopup3Open) {
+            marker3.openPopup();
+        }
+    });
+
+</script>
+</html>
+
+
+

@@ -1,0 +1,144 @@
+main {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden; 
+}
+
+.container { display: flex;}
+
+.content-left {
+    width: 90%;
+    margin: 10px;
+}
+.content-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+.content-table th,
+.content-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+  
+.content-table th {
+    background-color: #f2f2f2;
+    font-size: 18px;
+}
+  
+.content-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+  
+.content-table td:hover {
+    background-color: #ebebeb;
+}
+
+.name {
+    width: 150px;
+}
+
+.bxs-circle {
+   margin-right: 8px;
+   color: red;
+}
+
+#node-1{
+    color: #25ba4d;
+}
+
+/* .connected {
+    color: #25ba4d;
+  } */
+
+.content-right { 
+    width: calc(100% - 90%);
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#btn-export {
+    height: 30px;
+    width: 120px;
+    font-size: 15px
+}
+.container-charts {
+    margin: 10px;
+}
+
+.container-charts .content-charts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container-charts .content-charts .history-charts {
+    width: 50%;
+}
+
+
+@media (max-width: 900px) {
+
+    .container { display: block}
+
+    .content-right { 
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .content-table th,
+    .content-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        display: flex;
+    }
+
+    .container-charts .content-charts {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-charts .content-charts .history-charts {
+        width: 100%;
+    }
+
+    .content-left {
+        width: 100%;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 1100px) {
+
+    .container { display: block}
+
+    .content-right { 
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .content-table th,
+    .content-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        /* display: flex; */
+    }
+
+    .container-charts .content-charts {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-charts .content-charts .history-charts {
+        width: 100%;
+    }
+
+    .content-left {
+        width: 100%;
+        margin-top: 8px;
+    }
+}
