@@ -37,8 +37,8 @@ const EventsSchema = new Schema({
         required: true
     },
     created: {
-        type: Date,
-        default: moment().utc().add(7, 'hours')
+        type: String,
+        default: () => moment().utc().add(7, 'hours').format('HH:mm:ss DD-MM-YYYY')
     }
 }, {
         _id: false,

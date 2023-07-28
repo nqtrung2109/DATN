@@ -62,8 +62,10 @@ main {
 #btn-export {
     height: 30px;
     width: 120px;
-    font-size: 15px
+    font-size: 15px;
+    margin-top: 30px;
 }
+
 .container-charts {
     margin: 10px;
 }

@@ -37,8 +37,8 @@ const EventsSchema = new Schema({
         required: true
     },
     created: {
-        type: Date,
-        default: moment().utc().add(7, 'hours')
+        type: String,
+        default: () => moment().utc().add(7, 'hours').format('HH:mm:ss DD-MM-YYYY')
     }
 }, {
         _id: false,
@@ -48,4 +48,4 @@ const EventsSchema = new Schema({
     }
 );
 
-module.exports = mongoose.model('Event2', EventsSchema, 'Node_2');
+module.exports = mongoose.model('Event1', EventsSchema,'Node_1');

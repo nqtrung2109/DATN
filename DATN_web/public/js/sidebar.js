@@ -6,20 +6,20 @@ let searchBtn = document.querySelector(".bx-search");
 
 closeBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("open");
-    menuBtnChange();                         //calling the function(optional)
+    menuBtnChange();                         
 });
 
-searchBtn.addEventListener("click", ()=>{   // Sidebar open when you click on the search iocn
+searchBtn.addEventListener("click", ()=>{   // Sidebar mở khi clieck vào icon search 
     sidebar.classList.toggle("open");
-    menuBtnChange();                        //calling the function(optional)
+    menuBtnChange();                   
 });
 
 // thay đổi icon của nút btn khi ẩn hiện thanh sidebar
 function menuBtnChange() {
     if(sidebar.classList.contains("open")){
-        closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); //replacing the iocns class
+        closeBtn.classList.replace("bx-menu", "bx-menu-alt-right"); 
     }else {
-        closeBtn.classList.replace("bx-menu-alt-right","bx-menu");  //replacing the iocns class
+        closeBtn.classList.replace("bx-menu-alt-right","bx-menu");  
     }
 }   
 });

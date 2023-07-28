@@ -37,12 +37,12 @@ export const getDate = function (dateUnix, timezone) {
     const monthDayName = date.getUTCDate();
     const monthName = monthNames[date.getUTCMonth()];
 
-    console.log("dateUnix:", dateUnix);
-    console.log("timezone:", timezone);
-    console.log("UTChour:", date.getUTCHours());
-    console.log("UTCday week:", date.getUTCDay());
-    console.log("UTCday month:", monthDayName);
-    console.log("UTCday month:", date.getUTCMonth());
+    // console.log("dateUnix:", dateUnix);
+    // console.log("timezone:", timezone);
+    // console.log("UTChour:", date.getUTCHours());
+    // console.log("UTCday week:", date.getUTCDay());
+    // console.log("UTCday month:", monthDayName);
+    // console.log("UTCday month:", date.getUTCMonth());
 
     return `${weekDayName} ${monthDayName}, ${monthName}`;
 }

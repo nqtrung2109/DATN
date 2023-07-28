@@ -13,7 +13,6 @@ const addEventOnElements = function (elements, eventType, callback) {
     for (const element of elements) element.addEventListener(eventType, callback);
 }
 
-
 /** 
  * Toggle search in mobile devices
 */
@@ -329,10 +328,10 @@ export const updateWeather = function (lat, lon) {
                 const [{icon, description}] = weather;
                 const date = new Date(dt_txt);
 
-                console.log(dt_txt);
-                console.log(date.getDate());
-                console.log(date.getDay());
-                console.log(date.getMonth());
+                // console.log(dt_txt);
+                // console.log(date.getDate());
+                // console.log(date.getDay());
+                // console.log(date.getMonth());
 
                 const li = document.createElement('li');
                 li.classList.add("card-item");
