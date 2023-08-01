@@ -7,7 +7,7 @@ main {
 .container { display: flex;}
 
 .content-left {
-    width: 90%;
+    width: 87%;
     margin: 10px;
 }
 .content-table {
@@ -53,34 +53,108 @@ main {
   } */
 
 .content-right { 
-    width: calc(100% - 90%);
+    width: calc(100% - 87%);
     margin: 10px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 #btn-export {
     height: 30px;
     width: 120px;
     font-size: 15px;
-    margin-top: 30px;
+    margin-top: 15px;
+}
+
+.content-right .show-status {
+    margin-top: 10px;
+}
+.content-right .status-explanation {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .content-right .status-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+  
+.content-right .status-text {
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .container-charts {
     margin: 10px;
 }
 
-.container-charts .content-charts {
+.container-charts .content-historical-charts {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.container-charts .content-charts .history-charts {
+.container-charts .content-historical-charts .history-charts {
     width: 50%;
 }
 
+.container-charts .box-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
+.container-charts .box-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container-charts .box-text {
+    font-size: 18px;
+}
+
+.container-charts .box-text {
+    font-size: 18px;
+}
+.container-charts .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 100px;
+    color: #fff;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.cold {
+    background-color: #a0d3e7; /* Màu xanh lá nhạt */
+}
+
+.normal {
+    background-color: #95f17e; /* Màu xanh lá */
+}
+
+.warning {
+    background-color: #f7c808; /* Màu vàng nhạt */
+}
+
+.danger {
+    background-color: #f7a451; /* Màu cam */
+}
+
+.very-danger {
+    background-color: #e74c3c; /* Màu đỏ */
+}
+
+
+  
 @media (max-width: 900px) {
 
     .container { display: block}
@@ -103,7 +177,7 @@ main {
         flex-direction: column;
     }
 
-    .container-charts .content-charts .history-charts {
+    .container-charts .content-historical-charts .history-charts {
         width: 100%;
     }
 
@@ -135,7 +209,7 @@ main {
         flex-direction: column;
     }
 
-    .container-charts .content-charts .history-charts {
+    .container-charts .content-historical-charts .history-charts {
         width: 100%;
     }
 
