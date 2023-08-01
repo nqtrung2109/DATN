@@ -9,12 +9,15 @@ const moment = require('moment');
 const shortId = require('shortid');
 const xlsx = require('xlsx');
 const fs = require('fs');
+require('dotenv').config();
 
 const Event1  = require('./models/data1_model');
 const Event2  = require('./models/data2_model');
 const Event3  = require('./models/data3_model');
 
 const client = mqtt.connect('mqtt://broker.hivemq.com:1883');  // tạo client kết nối tới mqtt broker
+const mqttBroker = process.env.MQTT_BROKER;
+const mongodbUri = process.env.MONGODB_URI;
 const app = express();  // sử dụng module express để tạo một đối tượng ứng dụng web, từ đó ta có thể sử dụng được các thuộc tính và phương thức của express 
 const port = 3000; 
 
