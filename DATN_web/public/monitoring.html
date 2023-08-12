@@ -262,6 +262,17 @@
 
     // tạo biểu đồ
     let time = [0, 1, 2, 3, 4, 5];
+    // let time = [
+    //     [],
+    //     [],
+    //     [],
+    //     [],
+    //     [],
+    //     []
+    // ];
+
+    // let hour1Pending = false;
+    // let hour2Pending = false;
 
     // biểu đồ nhiệt độ
     let dataTemp1 = [0,0,0,0,0,0];
@@ -507,6 +518,15 @@
         socket.on("hour-1-update", (hour_1) => {
             document.getElementById("hour-1-value").textContent = hour_1;
             console.log("hour cua node 1 la: " + hour_1);
+            // hour1Pending = true;
+            // handleUpdate(hour_1);
+            
+            // if (time[time.length - 1].length === 0) {
+            //     time[time.length - 1].push(hour_1);
+            // } else {
+            //     time.shift();
+            //     time.push([hour_1]);
+            // }
 
             time.push(hour_1);
 
@@ -601,9 +621,9 @@
             dataPm1[0] = pm25_1;
 
             let newDataPm1 = dataPm1[0];
-            oldDataPm = dataPm1.slice(1);
-            oldDataPm.push(newDataPm1);
-            dataPm1 = [].concat(oldDataPm);
+            oldDataPm1 = dataPm1.slice(1);
+            oldDataPm1.push(newDataPm1);
+            dataPm1 = [].concat(oldDataPm1);
             chartPm.data.datasets[0].data = dataPm1;
             chartPm.update(0);
         });
@@ -615,18 +635,60 @@
 
         socket.on("hour-2-update", (hour_2) => {
             document.getElementById("hour-2-value").textContent = hour_2;
+
+            console.log("hour cua node 2 la: " + hour_2);
+
+            // hour2Pending = true;
+            // handleUpdate(hour_2);
+            
+            // time.push(hour_2);
+
+            // // Giới hạn số lượng phần tử trong timeTemp, nếu muốn giới hạn số lượng, bạn có thể thay đổi giá trị 6 bên dưới thành số phần tử tối đa mong muốn
+            // if (time.length > 6) {
+            //     time.shift(); // Xóa phần tử đầu tiên
+            // }
+
+            // // Cập nhật nhãn trục X của biểu đồ
+            // chartTemp.data.labels = time;
+            // chartTemp.update();
+
+            // chartHum.data.labels = time;
+            // chartHum.update();
+
+            // chartPm.data.labels = time;
+            // chartPm.update();
+
+            // chartUv.data.labels = time;
+            // chartUv.update();
         });
 
         socket.on("temp-2-update", (temp_2) => {
             document.getElementById("temp-2-value").textContent = temp_2;
             temp2 = parseFloat(temp_2); 
             calculateAverageTemp();
+
+            dataTemp2[0] = temp_2;
+
+            let newDataTemp2 = dataTemp2[0];
+            oldDataTemp2 = dataTemp2.slice(1);
+            oldDataTemp2.push(newDataTemp2);
+            dataTemp2 = [].concat(oldDataTemp2);
+            chartTemp.data.datasets[1].data = dataTemp2;
+            chartTemp.update(1);
         });
 
         socket.on("hum-2-update", (hum_2) => {
             document.getElementById("hum-2-value").textContent = hum_2;
             hum2 = parseFloat(hum_2);
             calculateAverageHum();
+
+            dataHum2[0] = hum_2;
+            let newdataHum2 = dataHum2[0];
+            olddataHum2 = dataHum2.slice(1);
+            olddataHum2.push(newdataHum2);
+            dataHum2 = [].concat(olddataHum2);
+            chartHum.data.datasets[1].data = dataHum2;
+            chartHum.update(1);
         });
 
         socket.on("co2-2-update", (co2_2) => {
@@ -639,12 +701,28 @@
             document.getElementById("uv-2-value").textContent = uv_2;
             uv2 = parseFloat(uv_2)
             calculateAverageUv();
+
+            dataUv2[0] = uv_2;
+            let newDataUv2 = dataUv2[0];
+            oldDataUv2 = dataUv2.slice(1);
+            oldDataUv2.push(newDataUv2);
+            dataUv2 = [].concat(oldDataUv2);
+            chartUv.data.datasets[1].data = dataUv2;
+            chartUv.update(1);
         });
 
         socket.on("pm25-2-update", (pm25_2) => {
             document.getElementById("pm25-2-value").textContent = pm25_2;
             pm252 = parseFloat(pm25_2);
             calculateAveragePm25();
+
+            dataPm2[0] = pm25_2;
+            let newDataPm2 = dataPm2[0];
+            oldDataPm2 = dataPm2.slice(1);
+            oldDataPm2.push(newDataPm2);
+            dataPm2 = [].concat(oldDataPm2);
+            chartPm.data.datasets[1].data = dataPm2;
+            chartPm.update(1);
         });
 
         // cập nhật dữ liệu node 3
@@ -654,18 +732,56 @@
 
         socket.on("hour-3-update", (hour_3) => {
             document.getElementById("hour-3-value").textContent = hour_3;
+
+            console.log("hour cua node 3 la: " + hour_3);
+
+            // time.push(hour_3);
+
+            // // Giới hạn số lượng phần tử trong timeTemp, nếu muốn giới hạn số lượng, bạn có thể thay đổi giá trị 6 bên dưới thành số phần tử tối đa mong muốn
+            // if (time.length > 6) {
+            //     time.shift(); // Xóa phần tử đầu tiên
+            // }
+
+            // // Cập nhật nhãn trục X của biểu đồ
+            // chartTemp.data.labels = time;
+            // chartTemp.update();
+
+            // chartHum.data.labels = time;
+            // chartHum.update();
+
+            // chartPm.data.labels = time;
+            // chartPm.update();
+
+            // chartUv.data.labels = time;
+            // chartUv.update();
         });
 
         socket.on("temp-3-update", (temp_3) => {
             document.getElementById("temp-3-value").textContent = temp_3;
             temp3 = parseFloat(temp_3);
             calculateAverageTemp();
+
+            dataTemp3[0] = temp_3;
+            let newDataTemp3 = dataTemp3[0];
+            oldDataTemp3 = dataTemp3.slice(1);
+            oldDataTemp3.push(newDataTemp3);
+            dataTemp3 = [].concat(oldDataTemp3);
+            chartTemp.data.datasets[2].data = dataTemp3;
+            chartTemp.update(2);
         });
        
         socket.on("hum-3-update", (hum_3) => {
             document.getElementById("hum-3-value").textContent = hum_3;
             hum3 = parseFloat(hum_3);
             calculateAverageHum();
+
+            dataHum3[0] = hum_3;
+            let newdataHum3 = dataHum3[0];
+            olddataHum3 = dataHum3.slice(1);
+            olddataHum3.push(newdataHum3);
+            dataHum3 = [].concat(olddataHum3);
+            chartHum.data.datasets[2].data = dataHum3;
+            chartHum.update(2);
         });
 
         socket.on("co2-3-update", (co2_3) => {
@@ -678,13 +794,57 @@
             document.getElementById("uv-3-value").textContent = uv_3;
             uv3 = parseFloat(uv_3);
             calculateAverageUv();
+
+            dataUv3[0] = uv_3;
+            let newDataUv3 = dataUv3[0];
+            oldDataUv3 = dataUv3.slice(1);
+            oldDataUv3.push(newDataUv3);
+            dataUv3 = [].concat(oldDataUv3);
+            chartUv.data.datasets[2].data = dataUv3;
+            chartUv.update(2);
         });
 
         socket.on("pm25-3-update", (pm25_3) => {
             document.getElementById("pm25-3-value").textContent = pm25_3;
             pm253 = parseFloat(pm25_3);
             calculateAveragePm25();
+
+            dataPm3[0] = pm25_3;
+            let newDataPm3 = dataPm3[0];
+            oldDataPm3 = dataPm3.slice(1);
+            oldDataPm3.push(newDataPm3);
+            dataPm3 = [].concat(oldDataPm3);
+            chartPm.data.datasets[2].data = dataPm3;
+            chartPm.update(2);
         });
+
+        // update time vào mảng 2 chiều
+        // function handleUpdate(hour) {
+        //     if (hour1Pending && hour2Pending) {
+        //         time.shift();
+        //         time.push([hour1, hour2]);
+        //         hour1Pending = false;
+        //         hour2Pending = false;
+        //     } else if (hour1Pending) {
+        //         time.shift();
+        //         time.push([hour, time[time.length - 1][1]]);
+        //         hour1Pending = false;
+        //     } else if (hour2Pending) {
+        //         time.shift();
+        //         time.push([time[time.length - 1][0], hour]);
+        //         hour2Pending = false;
+        //     }
+        // }
+                
+        // function updateTime(hour, index) {
+        // if (time[time.length - 1].length <= index) {
+        //     time[time.length - 1][index] = hour;
+        // } else {
+        //     time.shift();
+        //     time.push([]);
+        //     time[time.length - 1][index] = hour;
+        // }
+        // }
 
         // tính giá trị trung bình và so sánh
         function calculateAverageTemp() {
@@ -733,7 +893,6 @@
 
         function calculateAverageCo2() {
             const averageCo2 = (co21 + co22 + co23) / 3;
-            console.log(averageCo2);
             document.getElementById("co2-average").textContent = averageCo2.toFixed(2);
             
             if (averageCo2 < 350) {
@@ -772,7 +931,6 @@
 
         function calculateAverageUv() {
             const averageUv = (uv1 + uv2 + uv3) / 3;
-            console.log(averageUv);
             document.getElementById("uv-average").textContent = averageUv.toFixed(2);
             
             if (averageUv < 3) {
